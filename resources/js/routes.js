@@ -23,8 +23,34 @@ const router = new VueRouter({
     {
       path: '/dashboard',
       name:'dashboard',
-      component: require('./views/Dashboard.vue').default
+      component: require('./views/Dashboard.vue').default,
+      meta: { requiresAuth: true },
     },
+ 
+    {
+        path: '/dashboard/users',
+        name: 'users',
+        component: require('./views/Users.vue').default,
+        meta: { requiresAuth: true },
+    },
+    /*  {
+        path: '/dashboard/users/registeruser',
+        name: 'users.register',
+        component: require('./views/user/RegisterUser.vue').default,
+        meta: { requiresAuth: true },
+    } */
+    {
+        path: '/dashboard/users/:id/show',
+        name: 'users.show',
+        component: require('./views/user/ShowUser.vue').default,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/dashboard/users/:id/edit',
+        name: 'users.edit',
+        component: require('./views/user/EditUser.vue').default,
+        meta: { requiresAuth: true },
+    },  
 
   ]
 });
