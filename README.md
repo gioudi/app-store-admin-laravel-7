@@ -1,61 +1,37 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Api Laravel Vue
+Api rest basica que permite la realizacion de Crud por medio de laravel , que se consume en componentes de Vue.js:
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Clonar repo
+Requrimientos
 
-## About Laravel
+Composer
+Node js
+Laragon , Wamp, Xampp
+Laravel 7^*
+Php 7.14^*
+Mysql
+Apache
+En la carpeta raiz de su entorno de desarrollo digite git clone 
+Instale dependencias digitando npm i y luego composer i
+Renombre el archivo .env.example a .env
+Aisgne la base de datos homestead y sus credenciales
+En la terminal digite php artisan key:generate
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A continuacion digite php artisan migrate:rollback --seed
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Al digitar php artisan route:list podra visulizar las rutas actuales en este casi ubicadas en config/api.php
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Inicie servicios digitando php artisan serve -- En una terminal diferente digite npm run watch para que se inicie la compilacion del webpack (css,js,bootstrap,componentes)
 
-## Learning Laravel
+Acceda a la url http://127.0.0.1:3000/dashboard
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Estructura
+El projecto se realizo mediante la aplicacion de un scafolding de front end Laravel 7 , por lo tanto las vistas las encontra en la carpeta Resources/views , estas a su vez se renderizan por medio del archivo routes.js que se ejecuta dentro del archivo resources/app.js .
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Migrations , Seeders and Model
+Actualmente existen dos modelos , User y Article este ultimo es el que use en la realizacion de la api rest , cada uno tiene una migration CreateArticlesTable y CreateUsersTable,tambien un seeder ArticlesTableSeeder y UsersTableSeeder estos a su vez son llamados en DatabaseSeeder.
 
-## Laravel Sponsors
+En el modelo aplique la proteccion fillable
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Controladores
+Api/AuthController y Article Controller son usados para la ejecucion del Crud por medio de los metodos get , post , put , y delete de acuerdo a lo solicitado en el documento .

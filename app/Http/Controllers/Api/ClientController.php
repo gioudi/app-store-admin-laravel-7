@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\City;
-
 use App\Client;
+use App\Http\Resources\ClientResource;
+
 
 
 class ClientController extends Controller
@@ -21,7 +21,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        return ClientResource::collection(Client::with('city')->paginate(10));
+
+
     }
 
     /**
@@ -42,7 +44,9 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client= Client::create($request->all());
+        //return response()->json($client, 201);
+        return response()->json(['client'=>$client,'message' => 'Client created successfully !!'],201);
     }
 
     /**
@@ -51,9 +55,14 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show($id)
     {
-        //
+         $clients = Client::with('city')->find($id);
+        if($clients){
+            return response()->json(['clients'=>$clients,'message' => 'success  !!'],200);
+        }else {
+            return response()->json([['error'=>'Unauthorized','message' => 'error !!'], 401]);
+        }
     }
 
     /**
@@ -62,9 +71,14 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit($id)
     {
-        //
+        $clients = Client::with('city')->find($id);
+        if($clients){
+            return response()->json(['clients'=>$clients,'message' => 'success  !!'],200);
+        }else {
+            return response()->json([['error'=>'Unauthorized','message' => 'error !!'], 401]);
+        }
     }
 
     /**
@@ -74,9 +88,11 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, $id)
     {
-        //
+        $clients = Client::findOrFail($id);
+        $clients->update($request->all());
+        return response()->json(['clients'=>$clients,'message' => 'updated!!'],200);
     }
 
     /**
@@ -85,8 +101,10 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $client->delete();
+        return response()->json('Client deleted successfully', 204);
     }
 }

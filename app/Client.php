@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     protected $fillable = [
-        'name',
+        'name','id_City'
     ];
+
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
 
 }

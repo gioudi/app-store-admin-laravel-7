@@ -37,14 +37,9 @@
         >
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
           <li class="nav-item has-treeview">
-            <a href="/#/dashboard" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Resume</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="/#/dashboard/cities" class="nav-link">
+            <a href="/#/dashboard/clients" class="nav-link active">
               <i class="nav-icon fa fa-signal"></i>
               <p>Clients</p>
             </a>
@@ -59,13 +54,6 @@
             <a href="/#/dashboard/cities" class="nav-link">
               <i class="nav-icon fas fa-city"></i>
               <p>Cities</p>
-            </a>
-          </li>
-
-          <li class="nav-item has-treeview">
-            <a href="/#/dashboard/userprofile" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
-              <p>Configuration</p>
             </a>
           </li>
         </ul>

@@ -5,7 +5,9 @@
     <div class="content-wrapper" style="min-height: 956.3px">
       <section class="content">
         <div class="row">
-          <div class="col-sm-12"><ModalDelete></ModalDelete></div>
+          <div class="col-sm-12"><ModalDeleteUser></ModalDeleteUser></div>
+          <div class="col-sm-12"><ModalDeleteCity></ModalDeleteCity></div>
+          <div class="col-sm-12"><ModalDeleteClient></ModalDeleteClient></div>
 
           <div class="col-sm-12">
             <section class="content-header">
@@ -43,12 +45,17 @@
 <script>
 import Header from "./components/partials/Header";
 import Sidebar from "./components/partials/Sidebar";
-import ModalDelete from "./views/user/_modalDelete";
+import ModalDeleteUser from "./views/user/_modalDelete";
+import ModalDeleteCity from "./views/city/_modalDelete";
+import ModalDeleteClient from "./views/client/_modalDelete";
+
 export default {
   components: {
     Header,
     Sidebar,
-    ModalDelete,
+    ModalDeleteUser,
+    ModalDeleteCity,
+    ModalDeleteClient,
   },
 
   methods: {},

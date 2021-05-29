@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\User;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -11,15 +12,30 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-       DB::table('users')->insert([
-           'name'=>'User1',
-           'email'=>'user1@gmail.com',
-           'password'=> bcrypt('password'),
-       ]);
-       DB::table('users')->insert([
-        'name'=>'User2',
-        'email'=>'user2@gmail.com',
-        'password'=> bcrypt('password'),
-    ]);
+        User::create([
+            'name'=>'User1',
+            'email'=>'user1@gmail.com',
+            'password'=> bcrypt('password'),
+        ]);
+        User::create([
+            'name'=>'User2',
+            'email'=>'user2@gmail.com',
+            'password'=> bcrypt('password'),
+        ]);
+        User::create([
+            'name'=>'User3',
+            'email'=>'user3@gmail.com',
+            'password'=> bcrypt('password'),
+        ]);
+        User::create([
+            'name'=>'User4',
+            'email'=>'user4@gmail.com',
+            'password'=> bcrypt('password'),
+        ]);
+        User::create([
+            'name'=>'admin',
+            'email'=>'admin@gmail.com',
+            'password'=> bcrypt('123456'),
+        ]);
     }
 }

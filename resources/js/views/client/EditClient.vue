@@ -5,7 +5,7 @@
         <div class="register-box">
           <div class="card card-outline card-primary">
             <div class="card-body">
-              <p class="login-box-msg">Update User</p>
+              <p class="login-box-msg">Update Client</p>
 
               <form name="form" @submit.prevent="setinfoUser()">
                 <div class="form-row">
@@ -20,7 +20,7 @@
                     />
                     <div class="input-group-append">
                       <div class="input-group-text">
-                        <span class="fas fa-user"></span>
+                        <span class="fas fa-clients"></span>
                       </div>
                     </div>
                   </div>
@@ -36,27 +36,28 @@
                 </div>
                 <div class="form-row">
                   <div class="input-group col-sm-12 mb-3">
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Email"
-                      name="email"
-                      v-model="formData.email"
-                      v-validate="'required|email'"
-                    />
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <span class="fas fa-envelope"></span>
-                      </div>
-                    </div>
+                    <select
+                      class="custom-select form-control"
+                      name="city"
+                      v-model="formData.id_City"
+                      v-validate="'required'"
+                    >
+                      <option
+                        v-for="city in formData.id_City"
+                        :key="city"
+                        :value="formData.id_City"
+                      >
+                        {{ city }}
+                      </option>
+                    </select>
                   </div>
                   <div class="input-group col-sm-12">
                     <div
                       class="alert d-block w-100 shadow alert-danger"
                       role="alert"
-                      v-if="submitted && errors.has('email')"
+                      v-if="submitted && errors.has('city')"
                     >
-                      {{ errors.first("email") }}
+                      {{ errors.first("city") }}
                     </div>
                   </div>
                 </div>
@@ -92,12 +93,11 @@
 
 <script>
 export default {
-  name: "updateUser",
+  name: "updateCity",
   data() {
     return {
       formData: {
         name: "",
-        email: "",
       },
       message: "",
       submitted: false,
@@ -111,9 +111,9 @@ export default {
     getinfoUser() {
       console.log(this.$route.params.id);
       axios
-        .get("api/user-detail/edit/" + this.$route.params.id)
+        .get("api/clients-detail/edit/" + this.$route.params.id)
         .then((response) => {
-          this.formData = response.data.user;
+          this.formData = response.data.clients;
           console.log(this.formData);
         })
         .catch((error) => {
@@ -127,7 +127,7 @@ export default {
       this.$validator.validate().then((isValid) => {
         if (isValid) {
           axios
-            .put("api/user-detail/edit/" + this.$route.params.id, this.formData)
+            .put("api/clients-detail/edit/" + this.$route.params.id, this.formData)
             .then((response) => {
               this.successful = true;
               this.message = response.data.message;

@@ -8,7 +8,7 @@ const router = new VueRouter({
     {
       path: '/',
       name:'app',
-      component: require('./App.vue').default
+      component: require('./views/pages/Login.vue').default
     },
     {
       path: '/login',
@@ -26,19 +26,14 @@ const router = new VueRouter({
       component: require('./views/Dashboard.vue').default,
       meta: { requiresAuth: true },
     },
- 
+
     {
         path: '/dashboard/users',
         name: 'users',
         component: require('./views/Users.vue').default,
         meta: { requiresAuth: true },
     },
-    /*  {
-        path: '/dashboard/users/registeruser',
-        name: 'users.register',
-        component: require('./views/user/RegisterUser.vue').default,
-        meta: { requiresAuth: true },
-    } */
+
     {
         path: '/dashboard/users/:id/show',
         name: 'users.show',
@@ -50,7 +45,52 @@ const router = new VueRouter({
         name: 'users.edit',
         component: require('./views/user/EditUser.vue').default,
         meta: { requiresAuth: true },
-    },  
+    },
+    {
+        path: '/dashboard/clients',
+        name: 'clients',
+        component: require('./views/Clients.vue').default,
+        meta: { requiresAuth: true },
+    },
+
+    {
+        path: '/dashboard/clients/:id/show',
+        name: 'clients.show',
+        component: require('./views/client/ShowClient.vue').default,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/dashboard/clients/:id/edit',
+        name: 'clients.edit',
+        component: require('./views/client/EditClient.vue').default,
+        meta: { requiresAuth: true },
+    },
+
+    {
+        path: '/dashboard/cities',
+        name: 'cities',
+        component: require('./views/Cities.vue').default,
+        meta: { requiresAuth: true },
+    },
+
+    {
+        path: '/dashboard/cities/:id/show',
+        name: 'cities.show',
+        component: require('./views/city/ShowCity.vue').default,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/dashboard/cities/:id/edit',
+        name: 'cities.edit',
+        component: require('./views/city/EditCity.vue').default,
+        meta: { requiresAuth: true },
+    },
+      {
+        path: '/dashboard/cities/create',
+        name: 'cities.register',
+        component: require('./views/city/CreateCity.vue').default,
+        meta: { requiresAuth: true },
+    }
 
   ]
 });

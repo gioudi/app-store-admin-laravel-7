@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\Api;
+
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,7 +11,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\City;
-
+use App\Http\Resources\CityResource;
 
 class CityController extends Controller
 {
@@ -20,7 +22,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        return CityResource::collection(City::paginate(10));
     }
 
     /**
@@ -41,7 +43,10 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $city= City::create($request->all());
+        //return response()->json($city, 201);
+        return response()->json(['city'=>$city,'message' => 'City created successfully !!'],201);
+
     }
 
     /**
@@ -50,9 +55,14 @@ class CityController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show($id)
     {
-        //
+        $cities = City::find($id);
+        if($cities){
+            return response()->json(['cities'=>$cities,'message' => 'success  !!'],200);
+        }else {
+            return response()->json([['error'=>'Unauthorized','message' => 'error !!'], 401]);
+        }
     }
 
     /**
@@ -61,9 +71,14 @@ class CityController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit($id)
     {
-        //
+        $cities = City::find($id);
+        if($cities){
+            return response()->json(['cities'=>$cities,'message' => 'success  !!'],200);
+        }else {
+            return response()->json([['error'=>'Unauthorized','message' => 'error !!'], 401]);
+        }
     }
 
     /**
@@ -73,9 +88,11 @@ class CityController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, $id)
     {
-        //
+        $cities = City::findOrFail($id);
+        $cities->update($request->all());
+        return response()->json(['cities'=>$cities,'message' => 'updated!!'],200);
     }
 
     /**
@@ -84,8 +101,10 @@ class CityController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy($id)
     {
-        //
+        $city = City::findOrFail($id);
+        $city->delete();
+        return response()->json('City deleted successfully', 204);
     }
 }
