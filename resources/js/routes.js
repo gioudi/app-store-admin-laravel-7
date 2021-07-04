@@ -8,7 +8,7 @@ const router = new VueRouter({
     {
       path: '/',
       name:'app',
-      component: require('./App.vue').default
+      component: require('./views/pages/Login.vue').default
     },
     {
       path: '/login',
@@ -48,6 +48,7 @@ const router = new VueRouter({
       meta: {requiresAuth:true}
 
     },
+    
 
   ]
 });
