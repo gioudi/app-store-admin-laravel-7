@@ -8,7 +8,7 @@
 
        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
-    <body>
+    <body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-open">
         <div class="container-fluid" id="app">
            <app></app>
         </div>

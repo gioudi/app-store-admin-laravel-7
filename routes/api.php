@@ -19,12 +19,12 @@ Route::post('register', 'Api\AuthController@register');
     return $request->user();
 }); */
 
-/*
-Route::get('articles', 'ArticleController@index');
-Route::get('articles/{id}', 'ArticleController@show');
-Route::post('articles', 'ArticleController@store');
-Route::put('articles/{article}', 'ArticleController@update' );
-Route::delete('articles/{id}', 'ArticleController@delete'); */
+
+Route::get('posts', 'Api\PostController@index');
+Route::get('posts/{id}', 'Api\PostController@show');
+Route::post('posts', 'Api\PostController@store');
+Route::put('posts/{article}', 'Api\PostController@update' );
+Route::delete('posts/{id}', 'Api\PostController@delete'); 
 
 
 
