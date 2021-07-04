@@ -84,6 +84,7 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "dashboard",
   data(){
@@ -105,6 +106,9 @@ export default {
   created() {
     this.getInfo();
   },
+  mounted() {
+    $('example2').dataTable();   
+  }
 };
 </script>
 
