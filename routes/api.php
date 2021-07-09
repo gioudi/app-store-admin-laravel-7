@@ -19,9 +19,10 @@ Route::post('register', 'Api\AuthController@register');
 
 Route::get('posts', 'Api\PostController@index');
 Route::get('posts/{id}', 'Api\PostController@show');
-Route::post('posts', 'Api\PostController@store');
-Route::put('posts/{article}', 'Api\PostController@update' );
-Route::delete('posts/{id}', 'Api\PostController@delete'); 
+Route::post('posts', 'Api\PostController@create');
+Route::post('posts/{id}', 'Api\PostController@edit');
+Route::put('posts/{id}', 'Api\PostController@update' );
+Route::delete('posts/{id}', 'Api\PostController@destroy'); 
 
 
 

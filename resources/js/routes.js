@@ -35,14 +35,14 @@ const router = new VueRouter({
 
     },
     {
-      path: '/dashboard/edit/{id}',
+      path: '/dashboard/edit/:id',
       name:'dashboard.edit',
       component: require('./views/post/Edit').default,
       meta: {requiresAuth:true}
 
     },
     {
-      path: '/dashboard/show/{id}',
+      path: '/dashboard/show/:id',
       name:'dashboard.show',
       component: require('./views/post/Show').default,
       meta: {requiresAuth:true}

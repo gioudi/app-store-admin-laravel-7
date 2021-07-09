@@ -22,7 +22,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all()->toArray();
-        return array_reverse($posts);
+        return ($posts);
     }
 
     /**
@@ -30,9 +30,16 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $post = new Post([
+            'title'=>  $request->input('title'),
+            'description'=> $request->input('description')
+        ]);
+
+        $post->save();
+
+        return response()->json(['message'=>'Post created'],201);
     }
 
     /**
@@ -52,9 +59,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $post = Post::find($id);
+        if($post) {
+            return response()->json(['post'=>$post,'message' => 'post '],200);
+        }else {
+           return response()->json(['message' => 'post not found'],401);
+        }
     }
 
     /**
@@ -63,9 +75,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        if($post) {
+            return response()->json(['post'=>$post,'message' => 'post '],200);
+        }else {
+           return response()->json(['message' => 'post not found'],401);
+        }
     }
 
     /**
@@ -75,9 +92,21 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+
+        if($post) {
+            $post->update($request->all());
+        }else {
+           return response()->json(['message' => 'post not found'],401);
+        }
+
+
+        return response()->json(['message' => 'post updated'],200);
+
+        
     }
 
     /**
@@ -86,8 +115,15 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        
+        if($post) {
+            $post->delete();
+        }else {
+           return response()->json(['message' => 'post not found'],401);
+        }
+        return response()->json(['message' => 'post succesfuly deleted'],201);
     }
 }
